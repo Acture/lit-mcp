@@ -10,6 +10,12 @@ A powerful Model Context Protocol (MCP) server that provides seamless access to 
 - **Fast & Reliable**: Built on FastMCP for optimal performance
 - **Extensible**: Easy to add new academic databases
 
+## Example
+
+We tested this MCP by adding to Cursor. The [output](./example/small-lang-models.md) was generated based on the following prompt.
+
+> I want to write a comprehensive survey paper on small language models. Can you create me a template along with fully detailed analysis of the contents? The writeup should be narrative (paragraph) style with minimal use of bullet points. Update to the file named small-lang-models.md and put the detailed contents there. Make sure to add accurate in-text citaitons as well to the content using markdown citation format, and also make sure to give the PDF links to all the papers. Use the arxiv tool.
+
 ## 🛠️ Installation
 
 ### Prerequisites
