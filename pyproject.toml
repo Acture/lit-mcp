@@ -1,7 +1,7 @@
 [project]
 name = "lit-mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = "A MCP server layer for existing APIs from popular sources e.g. arXiv, DBLP, etc. to help researchers expidite literature review process using LLMs and MCP Clients like Claude, Cursor, etc."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
