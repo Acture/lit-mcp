@@ -1,5 +1,7 @@
 # lit-mcp (Literature Review Assistant MCP Server)
 
+<!-- MCP name format: io.github.gauravfs-14/lit-mcp -->
+
 [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://python.org)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)](https://modelcontextprotocol.io)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)

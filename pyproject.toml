@@ -40,3 +40,8 @@ lit-mcp = "lit_mcp.__main__:main"
 
 [project.entry-points."mcp.servers"]
 lit-mcp = "lit_mcp.__main__:mcp"
+
+[dependency-groups]
+dev = [
+    "jsonschema>=4.25.1",
+]
