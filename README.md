@@ -1,5 +1,12 @@
 # lit-mcp (Literature Review Assistant MCP Server)
 
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://python.org)
+[![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)](https://modelcontextprotocol.io)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![arXiv](https://img.shields.io/badge/arXiv-API-orange.svg)](https://arxiv.org)
+[![DBLP](https://img.shields.io/badge/DBLP-API-red.svg)](https://dblp.org)
+[![uv](https://img.shields.io/badge/uv-Package%20Manager-purple.svg)](https://github.com/astral-sh/uv)
+
 A powerful Model Context Protocol (MCP) server that provides seamless access to academic literature databases, helping researchers accelerate their literature review process using LLMs and MCP clients like Claude, Cursor, and others.
 
 ## 🚀 Features
@@ -40,22 +47,8 @@ Add to your MCP configuration (usually in `~/.cursor/mcp.json`):
 }
 ```
 
-### Claude Desktop
-
-Add to your Claude Desktop MCP configuration:
-
-```json
-{
-  "mcpServers": {
-    "lit-mcp": {
-      "command": "uvx",
-      "args": ["lit-mcp"]
-    }
-  }
-}
-```
-
-### Other MCP Clients
+<details>
+<summary><strong>Other MCP Clients (Claude Desktop, etc.)</strong></summary>
 
 Any MCP-compatible client can use lit-mcp with the same configuration pattern:
 
@@ -70,7 +63,7 @@ Any MCP-compatible client can use lit-mcp with the same configuration pattern:
 }
 ```
 
-### Example Usage
+**Example Usage:**
 
 Once configured, you can use the available tools in your MCP client:
 
@@ -79,9 +72,12 @@ Search for 5 papers on "machine learning transformers" using arXiv.
 Search for computer science papers on "GPS trajectory" using DBLP.
 ```
 
+</details>
+
 ## 📖 Available Tools
 
-### `arxiv_search`
+<details>
+<summary><strong>arxiv_search</strong></summary>
 
 Search for academic papers on arXiv with advanced query capabilities.
 
@@ -110,7 +106,10 @@ Search for academic papers on arXiv with advanced query capabilities.
 "au:Chhetri AND ti:transport"
 ```
 
-### `dblp_search`
+</details>
+
+<details>
+<summary><strong>dblp_search</strong></summary>
 
 Search for computer science publications in the DBLP database.
 
@@ -133,6 +132,8 @@ Search for computer science publications in the DBLP database.
 "GPS trajectory"
 "blockchain technology"
 ```
+
+</details>
 
 ## 📊 Example Output
 
@@ -185,7 +186,8 @@ We tested this MCP by adding to Cursor. The [output](./example/small-lang-models
 - Python 3.12
 - uv package manager
 
-### Setup
+<details>
+<summary><strong>Setup & Development Configuration</strong></summary>
 
 1. **Clone the repository**
 
@@ -230,11 +232,14 @@ If you're developing locally, you can use the development setup:
 }
 ```
 
+</details>
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on how to contribute to this project.
 
-### Quick Start for Contributors
+<details>
+<summary><strong>Quick Start for Contributors</strong></summary>
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -246,7 +251,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Code of Conduct
+</details>
 
 This project follows a [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcoming environment for all contributors.
 
