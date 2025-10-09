@@ -10,65 +10,76 @@ A powerful Model Context Protocol (MCP) server that provides seamless access to 
 - **Fast & Reliable**: Built on FastMCP for optimal performance
 - **Extensible**: Easy to add new academic databases
 
-## Example
+## 🚀 Quick Start
 
-We tested this MCP by adding to Cursor. The [output](./example/small-lang-models.md) was generated based on the following prompt.
-
-> I want to write a comprehensive survey paper on small language models. Can you create me a template along with fully detailed analysis of the contents? The writeup should be narrative (paragraph) style with minimal use of bullet points. Update to the file named small-lang-models.md and put the detailed contents there. Make sure to add accurate in-text citaitons as well to the content using markdown citation format, and also make sure to give the PDF links to all the papers. Use the arxiv tool.
-
-## 🛠️ Installation
-
-### Prerequisites
-
-- Python 3.12
-- uv package manager
-
-### Quick Start with uvx (Recommended)
-
-The easiest way to use lit-mcp is with `uvx`, which automatically handles installation and execution:
+### 1. Install UV (one-time setup)
 
 ```bash
-# Install and run with uvx
-uvx lit-mcp
-
-# Or run directly from GitHub
-uvx gauravfs-14/lit-mcp
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### Development Installation
+### 2. Add to MCP Client
 
-1. **Clone the repository**
+Simply add lit-mcp to your MCP client configuration - `uvx` will handle the rest automatically!
 
-   ```bash
-   git clone https://github.com/gauravfs-14/lit-mcp.git
-   cd lit-mcp
-   ```
+## 🔌 MCP Client Integration
 
-2. **Install dependencies**
+### Cursor IDE
 
-   Install UV with this command if not already installed.
+Add to your MCP configuration (usually in `~/.cursor/mcp.json`):
 
-   ```bash
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
+```json
+{
+  "mcpServers": {
+    "lit-mcp": {
+      "command": "uvx",
+      "args": ["lit-mcp"]
+    }
+  }
+}
+```
 
-   Now that we have UV setup, let's install the dependencies.
+### Claude Desktop
 
-   ```bash
-   uv sync
-   ```
+Add to your Claude Desktop MCP configuration:
 
-3. **Run the MCP server**
+```json
+{
+  "mcpServers": {
+    "lit-mcp": {
+      "command": "uvx",
+      "args": ["lit-mcp"]
+    }
+  }
+}
+```
 
-   ```bash
-   uv run main.py
-   ```
+### Other MCP Clients
 
-## 📖 Usage
+Any MCP-compatible client can use lit-mcp with the same configuration pattern:
 
-### Available Tools
+```json
+{
+  "mcpServers": {
+    "lit-mcp": {
+      "command": "uvx",
+      "args": ["lit-mcp"]
+    }
+  }
+}
+```
 
-#### `arxiv_search`
+### Example Usage
+
+Once configured, you can use the `arxiv_search` tool in your MCP client:
+
+```text
+Search for 5 papers on "machine learning transformers".
+```
+
+## 📖 Available Tools
+
+### `arxiv_search`
 
 Search for academic papers on arXiv with advanced query capabilities.
 
@@ -97,73 +108,6 @@ Search for academic papers on arXiv with advanced query capabilities.
 "au:Chhetri AND ti:transport"
 ```
 
-### MCP Client Integration
-
-#### Example: With Cursor (using uvx - Recommended)
-
-Add to your MCP configuration:
-
-```json
-{
-  "mcpServers": {
-    "lit-mcp": {
-      "command": "uvx",
-      "args": ["lit-mcp"]
-    }
-  }
-}
-```
-
-#### Example: With Cursor (development setup)
-
-If you're developing locally, you can use the development setup:
-
-```json
-{
-  "mcpServers": {
-    "lit-mcp": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "<absolute_path_to_the_cloned_repo>",
-        "run",
-        "main.py"
-      ]
-    }
-  }
-}
-```
-
-## 🔧 Development
-
-### Project Structure
-
-```bash
-lit-mcp/
-├── main.py              # MCP server entry point
-├── utils/
-│   ├── __init__.py      # Package initialization
-│   └── arxiv.py         # arXiv API wrapper
-├── pyproject.toml       # Project configuration
-└── README.md           # This file
-```
-
-### Adding New Tools
-
-1. Create a new function in `utils/` directory
-2. Add the `@mcp.tool()` decorator
-3. Update the imports in `main.py`
-
-Example:
-
-```python
-@mcp.tool()
-def dblp_search(query: str, max_results: int = 10) -> list[dict]:
-    """Search DBLP database for computer science papers."""
-    # Implementation here
-    pass
-```
-
 ## 📊 Example Output
 
 ```json
@@ -179,13 +123,83 @@ def dblp_search(query: str, max_results: int = 10) -> list[dict]:
 }
 ```
 
+## 🎯 Real-World Example
+
+We tested this MCP by adding to Cursor. The [output](./example/small-lang-models.md) was generated based on the following prompt:
+
+> I want to write a comprehensive survey paper on small language models. Can you create me a template along with fully detailed analysis of the contents? The writeup should be narrative (paragraph) style with minimal use of bullet points. Update to the file named small-lang-models.md and put the detailed contents there. Make sure to add accurate in-text citaitons as well to the content using markdown citation format, and also make sure to give the PDF links to all the papers. Use the arxiv tool.
+
+## 🛠️ Development Installation
+
+### Prerequisites
+
+- Python 3.12
+- uv package manager
+
+### Setup
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/gauravfs-14/lit-mcp.git
+   cd lit-mcp
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   # Install UV if not already installed
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   
+   # Install project dependencies
+   uv sync
+   ```
+
+3. **Run the MCP server**
+
+   ```bash
+   uv run lit-mcp
+   ```
+
+### Development Setup for MCP Clients
+
+If you're developing locally, you can use the development setup:
+
+```json
+{
+  "mcpServers": {
+    "lit-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "<absolute_path_to_the_cloned_repo>",
+        "run",
+        "lit-mcp"
+      ]
+    }
+  }
+}
+```
+
 ## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on how to contribute to this project.
+
+### Quick Start for Contributors
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+3. Make your changes
+4. Run tests (`uv run python tests/test_basic.py`)
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
+
+For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### Code of Conduct
+
+This project follows a [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcoming environment for all contributors.
 
 ## 🙏 Acknowledgments
 
@@ -193,14 +207,14 @@ def dblp_search(query: str, max_results: int = 10) -> list[dict]:
 - [arxiv-py](https://pypi.org/project/arxiv/) developers for the excellent Python wrapper
 - [FastMCP](https://github.com/modelcontextprotocol/fastmcp) for the MCP server framework
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🆘 Support
 
 If you encounter any issues or have questions:
 
-1. Check the [Issues](https://github.com/your-repo/lit-mcp/issues) page
+1. Check the [Issues](https://github.com/gauravfs-14/lit-mcp/issues) page
 2. Create a new issue with detailed information
 3. Join our community discussions
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
