@@ -23,7 +23,19 @@ We tested this MCP by adding to Cursor. The [output](./example/small-lang-models
 - Python 3.12
 - uv package manager
 
-### Quick Start
+### Quick Start with uvx (Recommended)
+
+The easiest way to use lit-mcp is with `uvx`, which automatically handles installation and execution:
+
+```bash
+# Install and run with uvx
+uvx lit-mcp
+
+# Or run directly from GitHub
+uvx gauravfs-14/lit-mcp
+```
+
+### Development Installation
 
 1. **Clone the repository**
 
@@ -87,9 +99,24 @@ Search for academic papers on arXiv with advanced query capabilities.
 
 ### MCP Client Integration
 
-#### Example: With Cursor
+#### Example: With Cursor (using uvx - Recommended)
 
 Add to your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "lit-mcp": {
+      "command": "uvx",
+      "args": ["lit-mcp"]
+    }
+  }
+}
+```
+
+#### Example: With Cursor (development setup)
+
+If you're developing locally, you can use the development setup:
 
 ```json
 {

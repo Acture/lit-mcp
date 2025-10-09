@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from utils import search_arxiv
+from .utils import search_arxiv
 
 mcp = FastMCP("lit-mcp")
 
