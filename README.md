@@ -15,6 +15,7 @@ A powerful Model Context Protocol (MCP) server that provides seamless access to 
 
 - **arXiv Integration**: Search and retrieve academic papers from arXiv
 - **DBLP Integration**: Search computer science publications from DBLP database
+- **AI-Powered Prompts**: Generate comprehensive research summaries and insights (usable as "/" commands)
 - **MCP Compatible**: Works with any MCP client (Claude, Cursor, etc.)
 - **Structured Data**: Returns well-formatted paper metadata
 - **Fast & Reliable**: Built on FastMCP for optimal performance
@@ -70,13 +71,21 @@ Any MCP-compatible client can use lit-mcp with the same configuration pattern:
 Once configured, you can use the available tools in your MCP client:
 
 ```text
+# Search tools
 Search for 5 papers on "machine learning transformers" using arXiv.
 Search for computer science papers on "GPS trajectory" using DBLP.
+
+# AI-powered prompts (as "/" commands in Cursor)
+/latest_info small language models
+/related_topics transformer architectures  
+/author_spotlight computer vision
 ```
 
 </details>
 
 ## 📖 Available Tools
+
+### Search Tools
 
 <details>
 <summary><strong>arxiv_search</strong></summary>
@@ -137,6 +146,113 @@ Search for computer science publications in the DBLP database.
 
 </details>
 
+### AI-Powered Research Prompts
+
+<details>
+<summary><strong>latest_info</strong></summary>
+
+Generate comprehensive summaries of the most recent innovations, trends, and papers in a research field.
+
+**Parameters:**
+
+- `topic` (string): Research field or topic to analyze
+
+**Returns:**
+
+- Well-structured Markdown document with recent papers, key trends, and insights
+
+**Features:**
+
+- Identifies latest papers (preferably within last 12 months)
+- Focuses on highly cited, emerging, or novel works
+- Provides structured summaries with PDF links
+- Includes "Key Trends & Insights" section
+- Beautifully formatted for easy reading
+
+**Example Usage:**
+
+```text
+# As MCP prompt
+Generate latest information about "small language models"
+Analyze recent trends in "quantum machine learning"
+
+# As "/" command in Cursor
+/latest_info small language models
+/latest_info quantum machine learning
+```
+
+</details>
+
+<details>
+<summary><strong>related_topics</strong></summary>
+
+Discover related and emerging research areas connected to a given topic.
+
+**Parameters:**
+
+- `topic` (string): Research topic to explore connections for
+
+**Returns:**
+
+- Structured Markdown document with related topics, representative papers, and emerging intersections
+
+**Features:**
+
+- Identifies 3-6 distinct related topics or subfields
+- Shows connections between topics
+- Provides representative papers with summaries
+- Highlights emerging interdisciplinary areas
+- Reveals novel applications and fusion trends
+
+**Example Usage:**
+
+```text
+# As MCP prompt
+Find related topics for "transformer architectures"
+Explore connections around "federated learning"
+
+# As "/" command in Cursor
+/related_topics transformer architectures
+/related_topics federated learning
+```
+
+</details>
+
+<details>
+<summary><strong>author_spotlight</strong></summary>
+
+Identify leading authors, labs, and research groups advancing innovation in a field.
+
+**Parameters:**
+
+- `topic` (string): Research field to analyze for key contributors
+
+**Returns:**
+
+- Structured Markdown document with top authors, their affiliations, notable papers, and collaborative networks
+
+**Features:**
+
+- Ranks authors by publication frequency and impact
+- Shows affiliations and research themes
+- Lists notable papers with summaries
+- Identifies collaborative networks and research groups
+- Highlights cross-institution projects
+
+**Example Usage:**
+
+```text
+# As MCP prompt
+Find leading authors in "computer vision"
+Identify key researchers in "natural language processing"
+
+# As "/" command in Cursor
+/author_spotlight computer vision
+/author_spotlight natural language processing
+```
+
+</details>
+
 ## 📊 Example Output
 
 ### arXiv Search Result
@@ -177,9 +293,17 @@ Search for computer science publications in the DBLP database.
 
 ## 🎯 Real-World Example
 
-We tested this MCP by adding to Cursor. The [output](./example/small-lang-models.md) was generated based on the following prompt:
+We tested this MCP by adding to Cursor. The [output](./example/small-lang-models.md) was generated using the new AI-powered prompts and search tools. This comprehensive survey demonstrates the capabilities of lit-mcp:
 
-> I want to write a comprehensive survey paper on small language models. Can you create me a template along with fully detailed analysis of the contents? The writeup should be narrative (paragraph) style with minimal use of bullet points. Update to the file named small-lang-models.md and put the detailed contents there. Make sure to add accurate in-text citaitons as well to the content using markdown citation format, and also make sure to give the PDF links to all the papers. Use the arxiv tool.
+**Generated using:**
+
+- `latest_info` prompt for recent trends and innovations
+- `related_topics` prompt for connected research areas  
+- `author_spotlight` prompt for key researchers and collaborations
+- `arxiv_search` tool for paper discovery and citations
+
+**Original prompt:**
+> I want to write a comprehensive survey paper on small language models. Can you create me a template along with fully detailed analysis of the contents? The writeup should be narrative (paragraph) style with minimal use of bullet points. Update to the file named small-lang-models.md and put the detailed contents there. Make sure to add accurate in-text citations as well to the content using markdown citation format, and also make sure to give the PDF links to all the papers. Use the arxiv tool.
 
 ## 🛠️ Development Installation
 
@@ -250,6 +374,14 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 5. Commit your changes (`git commit -m 'Add amazing feature'`)
 6. Push to the branch (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
+
+**New contributors can help with:**
+
+- Adding new academic database integrations (PubMed, IEEE Xplore, ACM Digital Library)
+- Creating new AI-powered research prompts
+- Improving existing prompt templates
+- Adding new evaluation metrics and benchmarks
+- Enhancing documentation and examples
 
 For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 

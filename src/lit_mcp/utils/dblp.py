@@ -1,7 +1,7 @@
 import requests
 from typing import List, Dict, Any
 
-def search_dblp(query: str, max_results: int = 10) -> List[Dict[str, Any]]:
+def find_dblp_publications(query: str, max_results: int = 10) -> List[Dict[str, Any]]:
     """Search DBLP database for computer science papers.
     
     Args:

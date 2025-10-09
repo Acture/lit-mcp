@@ -1,4 +1,4 @@
-from .arxiv import search_arxiv
-from .dblp import search_dblp
+from .arxiv import find_arxiv_publications
+from .dblp import find_dblp_publications
 
-__all__ = ["search_arxiv", "search_dblp"]
+__all__ = ["find_arxiv_publications", "find_dblp_publications"]

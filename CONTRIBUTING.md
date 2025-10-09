@@ -86,6 +86,7 @@ We welcome various types of contributions:
 
 - **Bug fixes**: Fix issues and improve reliability
 - **New tools**: Add support for new academic databases (PubMed, IEEE Xplore, ACM Digital Library, etc.)
+- **New prompts**: Create AI-powered research prompts for literature analysis
 - **Enhancements**: Improve existing functionality
 - **Documentation**: Improve docs, examples, and guides
 - **Tests**: Add test coverage for new features
@@ -153,6 +154,59 @@ We welcome various types of contributions:
        assert callable(main.pubmed_search)
    ```
 
+## Adding New AI-Powered Prompts
+
+### Step-by-Step Guide
+
+1. **Create a new prompt module** in `src/lit_mcp/prompts/`:
+
+   ```python
+   # src/lit_mcp/prompts/trend_analysis.py
+   def trend_analysis_prompt(topic: str) -> str:
+       """Generate a comprehensive trend analysis for a research topic."""
+       return f"""
+       You are an expert research analyst. Analyze trends in {topic}:
+       
+       1. Use arXiv and DBLP tools to find recent papers
+       2. Identify emerging patterns and trends
+       3. Provide structured analysis with insights
+       4. Format as beautiful Markdown document
+       """
+   ```
+
+2. **Add the prompt to the prompts package**:
+
+   ```python
+   # src/lit_mcp/prompts/__init__.py
+   from .trend_analysis import trend_analysis_prompt
+   
+   __all__ = ["latest_info_prompt", "related_topics_prompt", "author_spotlight_prompt", "trend_analysis_prompt"]
+   ```
+
+3. **Add the prompt to the main module**:
+
+   ```python
+   # src/lit_mcp/__main__.py
+   from .prompts import trend_analysis_prompt
+   
+   @mcp.prompt(
+       name="trend_analysis",
+       description="Analyze research trends and patterns in a given field."
+   )
+   def trend_analysis(topic: str) -> str:
+       """Analyze research trends and patterns in a given field."""
+       return trend_analysis_prompt(topic)
+   ```
+
+4. **Add tests** in `tests/test_basic.py`:
+
+   ```python
+   def test_trend_analysis_prompt():
+       """Test that the trend_analysis prompt is properly decorated."""
+       import lit_mcp.__main__ as main
+       assert callable(main.trend_analysis)
+   ```
+
 ### Tool Development Best Practices
 
 - **Follow the existing pattern**: Use the same structure as `arxiv_search` and `dblp_search`
@@ -160,6 +214,16 @@ We welcome various types of contributions:
 - **Handle errors gracefully**: Use try-catch blocks for network requests
 - **Return consistent data**: Follow the same dictionary structure as existing tools
 - **Add type hints**: Use proper type annotations for all functions
+
+### Prompt Development Best Practices
+
+- **Follow the existing pattern**: Use the same structure as `latest_info_prompt`, `related_topics_prompt`, and `author_spotlight_prompt`
+- **Create focused prompts**: Each prompt should have a clear, specific purpose
+- **Include clear instructions**: Provide step-by-step guidance for the AI
+- **Use structured output**: Specify Markdown formatting requirements
+- **Leverage existing tools**: Reference arXiv and DBLP search capabilities
+- **Add comprehensive docstrings**: Include parameter descriptions and return types
+- **Test with real topics**: Validate prompts with actual research topics
 
 ## Testing
 
@@ -262,6 +326,11 @@ lit-mcp/
 ├── src/lit_mcp/           # Main package code
 │   ├── __init__.py        # Package initialization
 │   ├── __main__.py        # MCP server entry point
+│   ├── prompts/           # AI-powered research prompts
+│   │   ├── __init__.py    # Prompts package
+│   │   ├── latest_info.py # Latest research trends prompt
+│   │   ├── related_topics.py # Related topics discovery prompt
+│   │   └── author_spotlight.py # Author analysis prompt
 │   └── utils/             # Utility modules
 │       ├── __init__.py    # Utils package
 │       ├── arxiv.py       # arXiv integration
