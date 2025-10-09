@@ -5,6 +5,7 @@ A powerful Model Context Protocol (MCP) server that provides seamless access to 
 ## 🚀 Features
 
 - **arXiv Integration**: Search and retrieve academic papers from arXiv
+- **DBLP Integration**: Search computer science publications from DBLP database
 - **MCP Compatible**: Works with any MCP client (Claude, Cursor, etc.)
 - **Structured Data**: Returns well-formatted paper metadata
 - **Fast & Reliable**: Built on FastMCP for optimal performance
@@ -71,10 +72,11 @@ Any MCP-compatible client can use lit-mcp with the same configuration pattern:
 
 ### Example Usage
 
-Once configured, you can use the `arxiv_search` tool in your MCP client:
+Once configured, you can use the available tools in your MCP client:
 
 ```text
-Search for 5 papers on "machine learning transformers".
+Search for 5 papers on "machine learning transformers" using arXiv.
+Search for computer science papers on "GPS trajectory" using DBLP.
 ```
 
 ## 📖 Available Tools
@@ -108,7 +110,33 @@ Search for academic papers on arXiv with advanced query capabilities.
 "au:Chhetri AND ti:transport"
 ```
 
+### `dblp_search`
+
+Search for computer science publications in the DBLP database.
+
+**Parameters:**
+
+- `query` (string): Search query for computer science papers
+- `max_results` (integer, optional): Maximum number of results (default: 10)
+
+**Returns:**
+
+- List of publication objects with title, authors, venue, volume, number, pages, publisher, year, type, access, key, DOI, electronic edition link, and DBLP URL
+
+**Example Queries:**
+
+```python
+# Search for specific topics
+"machine learning"
+"computer vision"
+"natural language processing"
+"GPS trajectory"
+"blockchain technology"
+```
+
 ## 📊 Example Output
+
+### arXiv Search Result
 
 ```json
 {
@@ -120,6 +148,27 @@ Search for academic papers on arXiv with advanced query capabilities.
   "pdf_url": "http://arxiv.org/pdf/2508.19239v1",
   "categories": ["cs.AI"],
   "doi": null
+}
+```
+
+### DBLP Search Result
+
+```json
+{
+  "title": "GPS Trajectory Data Mining: A Survey",
+  "authors": ["John Doe", "Jane Smith"],
+  "venue": "IEEE Transactions on Knowledge and Data Engineering",
+  "volume": "35",
+  "number": "3",
+  "pages": "1234-1250",
+  "publisher": "IEEE",
+  "year": "2023",
+  "type": "Journal Articles",
+  "access": "open",
+  "key": "journals/tkde/DoeS23",
+  "doi": "10.1109/TKDE.2023.1234567",
+  "ee": "https://doi.org/10.1109/TKDE.2023.1234567",
+  "url": "https://dblp.org/rec/journals/tkde/DoeS23.html"
 }
 ```
 
@@ -204,7 +253,9 @@ This project follows a [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcomi
 ## 🙏 Acknowledgments
 
 - [arXiv](https://arxiv.org/) for providing free access to academic papers
+- [DBLP](https://dblp.org/) for the comprehensive computer science bibliography
 - [arxiv-py](https://pypi.org/project/arxiv/) developers for the excellent Python wrapper
+- [DBLP API](https://dblp.org/faq/How+to+use+the+dblp+search+API) for providing direct access to computer science publications
 - [FastMCP](https://github.com/modelcontextprotocol/fastmcp) for the MCP server framework
 
 ## 🆘 Support

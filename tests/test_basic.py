@@ -25,7 +25,30 @@ def test_arxiv_search_function():
         # If the API call fails, that's okay for testing purposes
         print(f"API call failed (expected in some environments): {e}")
 
+def test_dblp_search_function():
+    """Test that the dblp_search function is properly decorated."""
+    import lit_mcp.__main__ as main
+    # Check that the function exists and is callable
+    assert callable(main.dblp_search)
+    
+    # Test with a simple query (this will make an actual API call)
+    try:
+        results = main.dblp_search("machine learning", max_results=1)
+        assert isinstance(results, list)
+        if results:  # If we got results
+            assert isinstance(results[0], dict)
+            # Check for DBLP-specific attributes
+            expected_attrs = ['title', 'authors', 'venue', 'volume', 'number', 
+                            'pages', 'publisher', 'year', 'type', 'access', 
+                            'key', 'doi', 'ee', 'url']
+            for attr in expected_attrs:
+                assert attr in results[0]
+    except Exception as e:
+        # If the API call fails, that's okay for testing purposes
+        print(f"DBLP API call failed (expected in some environments): {e}")
+
 if __name__ == "__main__":
     test_import()
     test_arxiv_search_function()
+    test_dblp_search_function()
     print("All tests passed!")
