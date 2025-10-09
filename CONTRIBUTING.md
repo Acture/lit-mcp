@@ -85,7 +85,7 @@ For the complete Code of Conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 We welcome various types of contributions:
 
 - **Bug fixes**: Fix issues and improve reliability
-- **New tools**: Add support for new academic databases (DBLP, PubMed, etc.)
+- **New tools**: Add support for new academic databases (PubMed, IEEE Xplore, ACM Digital Library, etc.)
 - **Enhancements**: Improve existing functionality
 - **Documentation**: Improve docs, examples, and guides
 - **Tests**: Add test coverage for new features
@@ -103,11 +103,11 @@ We welcome various types of contributions:
 1. **Create a new module** in `src/lit_mcp/utils/`:
 
    ```python
-   # src/lit_mcp/utils/dblp.py
+   # src/lit_mcp/utils/pubmed.py
    import requests
    
-   def search_dblp(query: str, max_results: int = 10) -> list[dict]:
-       """Search DBLP database for computer science papers."""
+   def search_pubmed(query: str, max_results: int = 10) -> list[dict]:
+       """Search PubMed database for medical and scientific papers."""
        # Implementation here
        pass
    ```
@@ -116,11 +116,11 @@ We welcome various types of contributions:
 
    ```python
    # src/lit_mcp/__main__.py
-   from .utils.dblp import search_dblp
+   from .utils.pubmed import search_pubmed
    
    @mcp.tool()
-   def dblp_search(query: str, max_results: int = 10) -> list[dict]:
-       """Search DBLP database for computer science papers.
+   def pubmed_search(query: str, max_results: int = 10) -> list[dict]:
+       """Search PubMed database for medical and scientific papers.
        
        Args:
            query: The search query
@@ -129,7 +129,7 @@ We welcome various types of contributions:
        Returns:
            List of paper dictionaries with metadata
        """
-       return search_dblp(query, max_results)
+       return search_pubmed(query, max_results)
    ```
 
 3. **Add dependencies** to `pyproject.toml` if needed:
@@ -137,6 +137,7 @@ We welcome various types of contributions:
    ```toml
    dependencies = [
        "arxiv>=2.2.0",
+       "dblpy>=0.1.0",
        "httpx>=0.28.1",
        "mcp[cli]>=1.14.1",
        "requests>=2.31.0",  # New dependency
@@ -146,15 +147,15 @@ We welcome various types of contributions:
 4. **Add tests** in `tests/test_basic.py`:
 
    ```python
-   def test_dblp_search_function():
-       """Test that the dblp_search function is properly decorated."""
+   def test_pubmed_search_function():
+       """Test that the pubmed_search function is properly decorated."""
        import lit_mcp.__main__ as main
-       assert callable(main.dblp_search)
+       assert callable(main.pubmed_search)
    ```
 
 ### Tool Development Best Practices
 
-- **Follow the existing pattern**: Use the same structure as `arxiv_search`
+- **Follow the existing pattern**: Use the same structure as `arxiv_search` and `dblp_search`
 - **Add comprehensive docstrings**: Include parameter descriptions and return types
 - **Handle errors gracefully**: Use try-catch blocks for network requests
 - **Return consistent data**: Follow the same dictionary structure as existing tools
@@ -246,12 +247,12 @@ def test_new_tool():
 Use clear, descriptive commit messages:
 
 ```
-Add feature: DBLP search support
+Add feature: PubMed search support
 
-- Add DBLP API integration
-- Add dblp_search tool function
+- Add PubMed API integration
+- Add pubmed_search tool function
 - Update tests for new functionality
-- Add documentation for DBLP usage
+- Add documentation for PubMed usage
 ```
 
 ## Project Structure
@@ -263,7 +264,8 @@ lit-mcp/
 │   ├── __main__.py        # MCP server entry point
 │   └── utils/             # Utility modules
 │       ├── __init__.py    # Utils package
-│       └── arxiv.py       # arXiv integration
+│       ├── arxiv.py       # arXiv integration
+│       └── dblp.py        # DBLP integration
 ├── tests/                 # Test files
 │   ├── __init__.py
 │   └── test_basic.py      # Basic functionality tests

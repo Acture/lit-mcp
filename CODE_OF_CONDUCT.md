@@ -178,6 +178,6 @@ This Code of Conduct may be updated from time to time. When significant changes 
 
 ---
 
-**Version**: 1.0  
-**Last Updated**: October 2025  
-**Effective Date**: October 2025
+**Version**: 1.1  
+**Last Updated**: January 2025  
+**Effective Date**: January 2025

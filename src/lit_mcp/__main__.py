@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from .utils import search_arxiv
+from .utils import search_arxiv, search_dblp
 
 mcp = FastMCP("lit-mcp")
 
@@ -28,6 +28,18 @@ def arxiv_search(query: str, max_results: int = 10) -> list[dict]:
         }
         results_dict.append(result_dict)
     return results_dict
+
+@mcp.tool()
+def dblp_search(query: str, max_results: int = 10) -> list[dict]:
+    """Search DBLP database for computer science papers.
+    Args:
+        query: The query to search for.
+        max_results: The maximum number of results to return. Defaults to 10.
+
+    Returns:
+        A list of dictionaries with the following keys: title, authors, venue, volume, number, pages, publisher, year, type, access, key, doi, ee, url.
+    """
+    return search_dblp(query, max_results)
 
 def main():
     """Entry point for the MCP server when run as a script."""
