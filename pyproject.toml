@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "lit-mcp"
-version = "0.1.8"
+version = "0.1.9"
 description = "A MCP server layer for existing APIs from popular sources e.g. arXiv, DBLP, etc. to help researchers expedite literature review process using LLMs and MCP Clients like Claude, Cursor, etc."
 readme = "README.md"
 license = {text = "MIT"}
