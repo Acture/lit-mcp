@@ -50,6 +50,14 @@ Add to your MCP configuration (usually in `~/.cursor/mcp.json`):
 }
 ```
 
+### Codex CLI
+
+Use this single-line command to use it with codex.
+
+```bash
+codex mcp add lit-mcp -- uvx lit-mcp
+```
+
 <details>
 <summary><strong>Other MCP Clients (Claude Desktop, etc.)</strong></summary>
 
